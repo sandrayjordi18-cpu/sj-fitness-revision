@@ -1,0 +1,238 @@
+/* ==========================================================================
+   Main product — made to measure. No size selector by design.
+   Shopify: sections/main-product.liquid (templates/product.json)
+   Blocks planned: title, price, text, variant_picker, line_item_date,
+   buy_buttons, order_steps, collapsible_tab.
+   ========================================================================== */
+
+.product { padding-bottom: var(--section-space); }
+
+.product__grid { display: grid; }
+
+/* ---------- Gallery ---------- */
+.product__gallery {
+  position: relative;
+  margin-inline: calc(-1 * var(--gutter));
+}
+
+.gallery {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.gallery::-webkit-scrollbar { display: none; }
+
+.gallery__item { scroll-snap-align: start; }
+
+.gallery__counter {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 18px;
+  font-size: .625rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  color: var(--muted);
+}
+
+@media (min-width: 750px) {
+  .gallery { grid-auto-columns: 72%; gap: 4px; }
+}
+
+@media (min-width: 990px) {
+  .product__grid {
+    grid-template-columns: 7fr 5fr;
+    gap: clamp(48px, 5vw, 96px);
+    padding-top: 32px;
+  }
+
+  .product__gallery { margin-inline: 0; }
+
+  .gallery {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    overflow: visible;
+  }
+
+  .gallery__item--full { grid-column: 1 / -1; }
+  .gallery__counter { display: none; }
+}
+
+/* ---------- Info column ---------- */
+.product__info-inner { padding-top: 36px; }
+
+@media (min-width: 990px) {
+  .product__info-inner {
+    position: sticky;
+    top: calc(var(--header-height) + 32px);
+    padding-top: 0;
+  }
+}
+
+.product__eyebrow { color: var(--muted); }
+
+.product__title {
+  margin-top: 16px;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  line-height: 1;
+}
+
+.product__price { margin-top: 18px; font-size: 1rem; }
+
+.product__lead {
+  max-width: 46ch;
+  margin-top: 28px;
+  color: var(--muted);
+}
+
+.product__no-sizes {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+  padding-block: 16px;
+  border-block: 1px solid var(--line);
+  font-size: .875rem;
+}
+
+.product__no-sizes-mark {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-champagne);
+}
+
+/* ---------- Product form ---------- */
+.product-form { margin-top: 32px; }
+
+.product-form__actions { display: grid; gap: 10px; margin-top: 8px; }
+
+.product-form__status { min-height: 1.5em; margin-top: 12px; font-size: .8125rem; color: var(--muted); }
+
+/* ---------- How your order works ---------- */
+.order-steps {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+  font-size: .875rem;
+}
+
+.order-steps li { display: grid; grid-template-columns: 34px 1fr; }
+
+.order-steps span {
+  padding-top: .3em;
+  font-size: .625rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  color: var(--color-champagne);
+}
+
+.product__lead-time {
+  margin-top: 24px;
+  font-size: .875rem;
+  color: var(--muted);
+}
+
+.product__lead-time strong { font-weight: 400; color: var(--fg); }
+
+/* ---------- Related ---------- */
+.related { border-top: 1px solid var(--line); }
+
+.related__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(40px, 6vw, 80px);
+}
+
+.related__head .eyebrow { margin-bottom: 16px; color: var(--muted); }
+
+/* ---------- Sticky purchase bar (mobile only) ---------- */
+.sticky-buy {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  transform: translateY(100%);
+  transition: transform .5s var(--ease-out);
+}
+
+.sticky-buy.is-visible { transform: none; }
+
+.sticky-buy__info { min-width: 0; }
+
+.sticky-buy__title {
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sticky-buy__meta { font-size: .75rem; color: var(--muted); }
+
+.sticky-buy__button { flex: none; min-height: 46px; padding: 0 22px; }
+
+@media (min-width: 990px) {
+  .sticky-buy { display: none; }
+}
+
+/* Urgent-order note under the production time (Bodybuilding, Classic Physique). */
+.product__urgent { margin-top: 20px; }
+.product__urgent .inline-link { white-space: nowrap; }
+.product .accordion__content p + p { margin-top: .75em; }
+
+/* Bodybuilding pack prices (1, 2 or 3 posings). */
+.price-tiers {
+  margin: 0 0 28px;
+  padding: 18px 0;
+  border-block: 1px solid var(--line);
+}
+
+.price-tiers__title {
+  margin-bottom: 12px;
+  font-size: .625rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.price-tiers__list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: .9375rem;
+}
+
+.price-tiers__list li span:last-child { font-family: var(--font-display); font-size: 1.125rem; }
+
+.price-tiers__note { margin-top: 10px; font-size: .8125rem; color: var(--muted); }
+
+/* Shipping conditions next to the production time. */
+.shipping-note { margin-top: 16px; font-size: .8125rem; color: var(--muted); }
+.shipping-note p + p { margin-top: 4px; }
+
+/* Long compound words in the product name break by the page language. */
+.product__title { hyphens: auto; overflow-wrap: break-word; }
+
+/* Pack rows in the price table link to the pack pages. */
+.price-tiers__list a { display: flex; justify-content: space-between; width: 100%; }
+.price-tiers__list a span:first-child { border-bottom: 1px solid var(--line); transition: border-color .3s var(--ease-out); }
+.price-tiers__list a:hover span:first-child { border-color: var(--fg); }
+.price-tiers__list li[aria-current="true"] span:first-child { color: var(--color-champagne); }

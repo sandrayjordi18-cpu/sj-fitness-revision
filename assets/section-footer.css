@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Footer. Shopify: sections/footer.liquid (blocks: link_list, brand)
+   ========================================================================== */
+
+.footer { padding-top: clamp(80px, 12vw, 160px); }
+
+.footer__cta {
+  display: grid;
+  gap: 32px;
+  justify-items: start;
+  padding-bottom: clamp(64px, 10vw, 128px);
+  border-bottom: 1px solid var(--line);
+}
+
+.footer__cta-title { font-size: clamp(2.5rem, 7vw, 5.5rem); font-style: italic; }
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 24px;
+  padding-block: 64px;
+}
+
+.footer__brand { grid-column: 1 / -1; }
+
+.footer__tagline {
+  max-width: 30ch;
+  margin-top: 24px;
+  font-size: .9375rem;
+  color: var(--muted);
+}
+
+.footer__heading {
+  margin-bottom: 18px;
+  font-size: .5625rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer__col li + li { margin-top: 10px; }
+
+.footer__col a {
+  font-size: .9375rem;
+  transition: color .4s var(--ease-out);
+}
+
+.footer__col a:hover { color: var(--color-champagne); }
+
+.footer__bottom {
+  display: grid;
+  gap: 20px;
+  padding-block: 28px 36px;
+  border-top: 1px solid var(--line);
+  font-size: .625rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer__region { justify-self: start; letter-spacing: inherit; text-transform: inherit; }
+.footer__region:hover { color: var(--fg); }
+
+.footer__legal { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.footer__legal a:hover { color: var(--fg); }
+
+@media (min-width: 750px) {
+  .footer__cta { grid-template-columns: 1fr auto; align-items: end; }
+  .footer__grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .footer__brand { grid-column: auto; }
+  .footer__bottom { grid-template-columns: auto 1fr auto; align-items: center; }
+  .footer__legal { justify-content: center; }
+}

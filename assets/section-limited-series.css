@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Limited Series — two disciplines (tabs), editorial image, next-series sign-up.
+   Shopify: sections/limited-series.liquid
+   The S&J monogram in the Men's Physique image sits at 77–88% of its width and
+   50–69% of its height: the image is never cropped on that side.
+   ========================================================================== */
+
+.ls { position: relative; background: var(--color-ink); color: var(--color-ivory); }
+
+.ls__tabs {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ls__tab {
+  min-height: 52px;
+  padding: 14px 0;
+  font-size: .6875rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  transition: color .3s var(--ease-out), border-color .3s var(--ease-out);
+}
+
+.ls__tab:hover { color: var(--color-ivory); }
+.ls__tab[aria-selected="true"] { color: var(--color-ivory); border-color: var(--color-champagne); }
+
+.ls__stage { position: relative; }
+
+/* Phone and tablet: the whole image first (16:9, nothing cropped), text below on black. */
+.ls__media { position: relative; }
+.ls__media [hidden] { display: none; }
+.ls__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1672 / 941;
+}
+
+.ls__copy { position: relative; padding-block: 40px 64px; }
+.ls__panel[hidden], .ls [data-ls-consent][hidden], .ls-how [data-ls-step][hidden] { display: none; }
+
+.ls__kicker { margin-bottom: 22px; color: var(--color-champagne); }
+
+.ls__title {
+  font-size: clamp(2.375rem, 6vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -.02em;
+}
+
+.ls__title em { color: #e4d3ae; }
+
+.ls__intro { max-width: 46ch; margin-top: 24px; color: #e5e1d9; }
+
+/* ---------- Sign-up ---------- */
+.ls-signup { max-width: 500px; margin-top: 36px; }
+
+.ls-signup__title { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; }
+.ls-signup__text { margin-top: 8px; font-size: .8125rem; color: #ded9ce; }
+.ls-signup__label { display: block; margin-top: 16px; font-size: .75rem; color: #ded9ce; }
+
+.ls-signup__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 4px;
+  background: var(--color-ivory);
+}
+
+.ls-signup__input {
+  flex: 1 1 180px;
+  min-width: 0;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.ls-signup__input:focus-visible { outline: 1px solid var(--color-champagne); outline-offset: 0; }
+.ls-signup__input[aria-invalid="true"] { box-shadow: inset 0 -2px 0 #b5543c; }
+
+.ls-signup__button {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 12px 16px;
+  background: #282722;
+  color: var(--color-ivory);
+  font-size: .6875rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.ls-signup__button:hover { background: #000; }
+
+.ls-signup__consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 14px;
+  font-size: .75rem;
+  line-height: 1.6;
+  color: #e1ddd3;
+}
+
+.ls-signup__consent input {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  accent-color: var(--color-champagne);
+}
+
+.ls-signup__privacy { margin-top: 10px; font-size: .75rem; color: var(--muted); }
+.ls-signup__privacy a { text-decoration: underline; text-underline-offset: 3px; }
+
+.ls-signup__status { margin-top: 14px; font-size: .8125rem; line-height: 1.6; color: #e4d3ae; }
+.ls-signup__status.is-error { color: #f0b9a8; }
+
+/* ---------- WhatsApp channel ---------- */
+.ls-channel { max-width: 500px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+.ls-channel__button { min-height: 44px; max-width: 100%; white-space: normal; text-align: center; }
+.ls-channel__button[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
+.ls-channel__text { margin-top: 12px; font-size: .75rem; line-height: 1.6; color: #ded9ce; }
+
+.ls__how-link { display: inline-block; margin-top: 32px; }
+
+@media (max-width: 599px) {
+  .ls-signup__button { flex-basis: 100%; }
+}
+
+/* Desktop: image behind, anchored on the right so the monogram stays whole;
+   text on the dark left side, never over the monogram. */
+@media (min-width: 1100px) {
+  .ls__stage { display: flex; align-items: center; min-height: calc(100vw * 941 / 1672); }
+  .ls__media { position: absolute; inset: 0; overflow: hidden; }
+  .ls__media picture { position: absolute; inset: 0; }
+  .ls__media img { height: 100%; aspect-ratio: auto; object-fit: cover; object-position: 100% 50%; }
+  .ls__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(7, 9, 9, .9) 0, rgba(7, 9, 9, .6) 36%, rgba(7, 9, 9, .12) 58%, rgba(7, 9, 9, 0) 70%);
+    pointer-events: none;
+  }
+  .ls__copy { width: 100%; padding-block: 72px 88px; }
+  .ls__copy > * { max-width: min(40vw, 520px); }
+}
+
+/* ---------- How each series works ---------- */
+.ls-how { background: #151617; }
+.ls-how__label { color: var(--color-champagne); }
+
+.ls-how__steps {
+  display: grid;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.ls-how__title { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; }
+.ls-how__steps p { margin-top: 12px; color: #d0cdc6; }
+
+@media (min-width: 750px) {
+  .ls-how__steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+}

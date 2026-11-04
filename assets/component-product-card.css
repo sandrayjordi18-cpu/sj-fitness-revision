@@ -1,0 +1,112 @@
+/* ==========================================================================
+   Product card + swipeable strip. Shared by Limited Editions, related
+   products and (later) collection grids.
+   Shopify: assets/component-product-card.css, snippets/product-card.liquid
+   ========================================================================== */
+
+/* Swipeable on mobile, three columns on desktop. */
+.product-strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 78%;
+  gap: 14px;
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+}
+
+.product-strip::-webkit-scrollbar { display: none; }
+
+.product-card { scroll-snap-align: start; }
+.product-card a { display: block; }
+
+.product-card .media > * { transition: transform 1.6s var(--ease-slow); }
+.product-card a:hover .media > * { transform: scale(1.025); }
+
+.product-card__meta { display: grid; gap: 6px; margin-top: 20px; }
+
+.product-card__edition {
+  font-size: .5625rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--color-champagne);
+}
+
+.product-card__title {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.product-card__price { font-size: .875rem; color: var(--muted); }
+
+@media (min-width: 750px) {
+  .product-strip { grid-auto-columns: 44%; gap: 20px; }
+}
+
+@media (min-width: 990px) {
+  .product-strip {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+}
+
+/* ---------- Secondary image on hover (desktop pointers only) ---------- */
+.product-card__media { position: relative; }
+
+.product-card__alt {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .6s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .product-card a:hover .product-card__alt { opacity: 1; }
+}
+
+.product-card__edition--limited { color: var(--color-champagne); }
+
+.product-card__swatches {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.product-card__swatches li {
+  width: 10px;
+  height: 10px;
+  background: var(--swatch);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+/* Real colour of the model, as photographed. */
+.product-card__colour {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.product-card__swatch {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  background: var(--swatch);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+/* Long compound words (DE, PT) break by the page language instead of overflowing. */
+.product-card__title { hyphens: auto; overflow-wrap: break-word; }

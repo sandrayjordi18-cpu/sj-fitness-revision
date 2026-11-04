@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Accessories (Complementos) — coming soon. Editorial hero, no products.
+   Shopify: sections/coming-soon-hero.liquid
+   ========================================================================== */
+
+.cs {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: max(620px, calc(100svh - var(--header-height) - 40px));
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-ivory);
+}
+
+.cs__media { position: absolute; inset: 0; }
+.cs__media img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; }
+
+.cs__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(9, 11, 11, .95) 0, rgba(9, 11, 11, .45) 62%, rgba(9, 11, 11, .1) 100%);
+  pointer-events: none;
+}
+
+.cs__copy { position: relative; z-index: 1; padding-block: 140px 40px; }
+
+.cs__kicker { margin-bottom: 22px; color: var(--color-champagne); }
+
+.cs__title {
+  max-width: 14ch;
+  font-size: clamp(2.375rem, 6vw, 4.25rem);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+}
+
+.cs__title em { color: #e4d3ae; }
+
+.cs__text { max-width: 46ch; margin-top: 24px; color: #dfdbd3; }
+
+/* A state, not a button. */
+.cs__status {
+  display: inline-block;
+  margin-top: 32px;
+  padding-block: 12px;
+  border-block: 1px solid #d0b984;
+  font-size: .6875rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #e1d0ad;
+}
+
+.cs__foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 20px;
+  padding-block: 22px;
+  border-top: 1px solid rgba(255, 255, 255, .19);
+  font-size: .5625rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #d7cdb8;
+}
+
+@media (min-width: 1100px) {
+  .cs { justify-content: center; min-height: max(620px, calc(100vw * 941 / 1672)); }
+  .cs__media img { object-position: 100% 50%; }
+  .cs__media::after { background: linear-gradient(90deg, rgba(9, 11, 11, .9) 0, rgba(9, 11, 11, .35) 62%, rgba(9, 11, 11, 0) 100%); }
+  .cs__copy { padding-block: 80px 120px; }
+  .cs__foot { position: absolute; left: 0; right: 0; bottom: 0; }
+}

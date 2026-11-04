@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Accordion on native <details>. Product tabs, FAQ.
+   Shopify: assets/component-accordion.css, snippets/accordion.liquid
+   ========================================================================== */
+
+.accordion { margin-top: 40px; border-top: 1px solid var(--line); }
+
+.accordion__item { border-bottom: 1px solid var(--line); }
+
+.accordion__summary {
+  position: relative;
+  padding: 20px 32px 20px 0;
+  font-size: .6875rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.accordion__summary::before,
+.accordion__summary::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  width: 11px;
+  height: 1px;
+  background: currentColor;
+  transition: transform .4s var(--ease-out);
+}
+
+.accordion__summary::after { transform: rotate(90deg); }
+.accordion__item[open] .accordion__summary::after { transform: rotate(0deg); }
+
+.accordion__content {
+  padding-bottom: 24px;
+  max-width: 52ch;
+  font-size: .9375rem;
+  color: var(--muted);
+}
+
+.inline-link {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+

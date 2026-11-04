@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Made to measure — process. Shopify: sections/made-to-measure.liquid
+   (blocks: step)
+   ========================================================================== */
+
+.mtm__grid { display: grid; gap: 64px; }
+
+.mtm__aside { display: grid; gap: 56px; align-content: start; }
+.mtm__aside .eyebrow { margin-bottom: 20px; color: var(--muted); }
+
+.mtm__text {
+  max-width: 40ch;
+  margin-block: 28px 28px;
+  color: var(--muted);
+}
+
+.mtm__media { width: 82%; }
+
+.mtm__step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  padding-block: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.mtm__step:last-child { border-bottom: 1px solid var(--line); }
+
+.mtm__num {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-champagne);
+}
+
+.mtm__step p {
+  max-width: 44ch;
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+@media (min-width: 990px) {
+  .mtm__grid { grid-template-columns: 5fr 1fr 6fr; gap: 0; }
+  .mtm__aside { position: sticky; top: calc(var(--header-height) + 48px); align-self: start; }
+  .mtm__media { width: 70%; }
+  .mtm__steps { grid-column: 3; padding-top: 8px; }
+  .mtm__step { grid-template-columns: 96px 1fr; padding-block: 48px; }
+}

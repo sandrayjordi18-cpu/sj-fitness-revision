@@ -1,0 +1,194 @@
+/* ==========================================================================
+   Form controls: option legends, swatches, pills, text fields.
+   Shared by product form, filters and atelier request.
+   Shopify: assets/component-form.css
+   ========================================================================== */
+
+.option {
+  margin: 0 0 28px;
+  padding: 0;
+  border: 0;
+}
+
+.option__legend {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin-bottom: 14px;
+  padding: 0;
+  font-size: .625rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.option__value,
+.option__hint {
+  font-size: .875rem;
+  font-weight: 300;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+}
+
+.option__swatches,
+.option__pills { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.swatch {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+}
+
+.swatch::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  background: var(--swatch);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.swatch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  transition: border-color .3s var(--ease-out);
+}
+
+.swatch:hover::after { border-color: var(--line); }
+input:checked + .swatch::after { border-color: var(--fg); }
+input:focus-visible + .swatch,
+input:focus-visible + .pill { outline: 1px solid var(--color-champagne); outline-offset: 3px; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1px solid var(--line);
+  font-size: .8125rem;
+  cursor: pointer;
+  transition: border-color .3s var(--ease-out);
+}
+
+.pill:hover { border-color: var(--muted); }
+input:checked + .pill { border-color: var(--fg); }
+
+.field {
+  width: 100%;
+  max-width: 320px;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  font-size: .9375rem;
+}
+
+.field:focus { outline: none; border-color: var(--fg); }
+
+.option__help { margin-top: 10px; font-size: .8125rem; color: var(--muted); }
+
+
+.field--wide { max-width: none; }
+
+.field--area {
+  min-height: 140px;
+  padding-block: 14px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.field--file {
+  padding-block: 12px;
+  font-size: .8125rem;
+  color: var(--muted);
+}
+
+.field--file::file-selector-button {
+  margin-right: 16px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  font-size: .625rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* ---------- Waist measurement: exact value, cm or in ---------- */
+.waist__row {
+  display: flex;
+  align-items: stretch;
+  max-width: 320px;
+}
+
+.waist__field {
+  flex: 1;
+  min-width: 0;
+  max-width: none;
+  border-right: 0;
+  -moz-appearance: textfield;
+}
+
+.waist__field::-webkit-outer-spin-button,
+.waist__field::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.waist__units {
+  display: flex;
+  border: 1px solid var(--line);
+}
+
+.waist__unit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  font-size: .6875rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .3s var(--ease-out), background-color .3s var(--ease-out);
+}
+
+input:checked + .waist__unit { background: var(--fg); color: var(--bg); }
+input:focus-visible + .waist__unit { outline: 1px solid var(--color-champagne); outline-offset: -3px; }
+
+.waist__equiv {
+  margin-top: 12px;
+  font-size: .875rem;
+  color: var(--muted);
+}
+
+.waist__equiv strong { font-weight: 400; color: var(--fg); }
+
+/* ---------- Size in inches with its cm equivalent (Men's Physique only) ---------- */
+.size-pills { gap: 8px; }
+
+.size-pill {
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-width: 76px;
+  min-height: 56px;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.size-pill__in { font-size: .9375rem; }
+
+.size-pill__cm {
+  font-size: .625rem;
+  letter-spacing: .08em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.size-pill__cm.is-pending { font-style: italic; opacity: .75; }

@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Limited Editions — featured collection strip.
+   Shopify: sections/limited-editions.liquid (setting: collection)
+   ========================================================================== */
+
+.limited__head {
+  display: grid;
+  gap: 32px;
+  margin-bottom: clamp(48px, 7vw, 96px);
+}
+
+.limited__head .eyebrow { margin-bottom: 20px; color: var(--color-champagne); }
+
+.limited__intro {
+  display: grid;
+  gap: 24px;
+  justify-items: start;
+  max-width: 40ch;
+  color: var(--muted);
+}
+
+.limited__intro .link { color: var(--fg); }
+
+@media (min-width: 990px) {
+  .limited__head { grid-template-columns: 7fr 5fr; align-items: end; }
+  .limited__intro { justify-self: end; }
+
+  .limited .product-card:nth-child(2) { margin-top: 80px; }
+}

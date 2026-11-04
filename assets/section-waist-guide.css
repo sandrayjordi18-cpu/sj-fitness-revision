@@ -1,0 +1,55 @@
+/* ==========================================================================
+   Waist guide: how to measure the waist, in five languages.
+   Shopify: sections/waist-guide.liquid (texts from the locale files).
+   ========================================================================== */
+
+.waist-guide__grid {
+  display: grid;
+  gap: 40px;
+}
+
+.waist-guide__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.waist-guide__tab {
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 14px;
+  background: none;
+  font-size: .6875rem;
+  letter-spacing: .2em;
+  color: var(--muted);
+}
+
+.waist-guide__tab[aria-selected="true"] { border-color: var(--fg); color: var(--fg); }
+
+.waist-guide__figure {
+  margin: 0;
+  max-width: 320px;
+  color: var(--fg);
+}
+
+.waist-guide__svg { display: block; width: 100%; height: auto; }
+
+.waist-guide__title { margin-bottom: 32px; }
+
+.waist-guide__note {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: .875rem;
+  color: var(--muted);
+}
+
+@media (min-width: 990px) {
+  .waist-guide__grid {
+    grid-template-columns: 4fr 3fr 5fr;
+    align-items: start;
+    gap: 56px;
+  }
+  .waist-guide__figure { justify-self: center; }
+}
