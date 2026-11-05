@@ -1,55 +1,93 @@
 /* ==========================================================================
-   Waist guide: how to measure the waist, in five languages.
+   Men's posing measurement guide: waist and rise. Illustration and real text,
+   side by side from tablet landscape up, stacked below.
    Shopify: sections/waist-guide.liquid (texts from the locale files).
    ========================================================================== */
 
-.waist-guide__grid {
+.mguide__head { margin-bottom: 56px; }
+
+.mguide__head .eyebrow { margin-bottom: 20px; color: var(--color-champagne); }
+
+.mguide__block {
   display: grid;
-  gap: 40px;
-}
-
-.waist-guide__tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.waist-guide__tab {
-  gap: 8px;
-  min-height: 38px;
-  padding: 0 14px;
-  background: none;
-  font-size: .6875rem;
-  letter-spacing: .2em;
-  color: var(--muted);
-}
-
-.waist-guide__tab[aria-selected="true"] { border-color: var(--fg); color: var(--fg); }
-
-.waist-guide__figure {
-  margin: 0;
-  max-width: 320px;
-  color: var(--fg);
-}
-
-.waist-guide__svg { display: block; width: 100%; height: auto; }
-
-.waist-guide__title { margin-bottom: 32px; }
-
-.waist-guide__note {
-  margin-top: 28px;
-  padding-top: 20px;
+  gap: 32px;
+  padding-block: 48px;
   border-top: 1px solid var(--line);
+}
+
+.mguide__block:last-child { padding-bottom: 0; }
+
+.mguide__figure { margin: 0; }
+
+.mguide__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
+.mguide__legend {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
   font-size: .875rem;
-  color: var(--muted);
+}
+
+.mguide__legend p {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.mguide__legend span {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ec1678;
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+.mguide__kicker { margin-bottom: 12px; color: var(--color-champagne); }
+
+.mguide__title {
+  margin-bottom: 28px;
+  font-size: clamp(1.625rem, 3vw, 2.25rem);
+  line-height: 1.12;
+}
+
+.mguide__steps h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.mguide__steps p { color: #c9c8c3; }
+
+.mguide__note {
+  margin-top: 24px;
+  padding-left: 16px;
+  border-left: 1px solid var(--color-champagne);
+  font-size: .875rem;
 }
 
 @media (min-width: 990px) {
-  .waist-guide__grid {
-    grid-template-columns: 4fr 3fr 5fr;
+  .mguide__block {
+    grid-template-columns: 7fr 5fr;
+    gap: clamp(40px, 5vw, 88px);
     align-items: start;
-    gap: 56px;
+    padding-block: 72px;
   }
-  .waist-guide__figure { justify-self: center; }
+
+  /* The drawing stays in view while the steps are read. */
+  .mguide__figure {
+    position: sticky;
+    top: calc(var(--header-height, 88px) + 24px);
+  }
 }
