@@ -78,6 +78,60 @@
   pointer-events: none;
 }
 
+/* Entrance, once per visit to the page: the photos fade in one after another and a
+   faint light runs down the two separations. Everything ends still and adds no delay
+   to the text or buttons. */
+.hero__triptych { z-index: 0; }
+
+.js .hero__photo { animation: hero-photo-in 1.2s var(--ease-slow) both; }
+.js .hero__panel:nth-child(2) .hero__photo { animation-delay: .14s; }
+.js .hero__panel:nth-child(3) .hero__photo { animation-delay: .28s; }
+
+.hero__seam {
+  position: absolute;
+  top: var(--header-height);
+  bottom: 0;
+  left: calc(100% / 3);
+  z-index: 1;
+  width: 16px;
+  margin-left: -8px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero__seam:last-child { left: calc(200% / 3); }
+
+.hero__seam::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 45%;
+  background: linear-gradient(to bottom, rgba(245, 232, 205, 0), rgba(245, 232, 205, .8), rgba(245, 232, 205, 0));
+  box-shadow: 0 0 8px 1px rgba(245, 232, 205, .2);
+  opacity: 0;
+}
+
+.js .hero__seam::before { animation: hero-seam 1.8s ease-in-out .45s both; }
+.js .hero__seam:last-child::before { animation-delay: .65s; }
+
+@keyframes hero-photo-in {
+  from { opacity: 0; transform: scale(1.025); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hero-seam {
+  0% { opacity: 0; transform: translateY(-100%); }
+  25%, 75% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(223%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__photo { animation: none; }
+  .hero__seam { display: none; }
+}
+
 /* Short phones: the band stays clear of the eyebrow. */
 @media (max-width: 749px) and (max-height: 760px) {
   .hero__panel { aspect-ratio: auto; height: 150px; }
@@ -145,7 +199,81 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 20px 32px;
+  gap: 12px;
+  min-height: 54px;
+}
+
+/* The buttons are smaller, but the block keeps the space the previous ones took, which
+   depended on the language: nothing around it moves. Stacked below the width where the
+   previous row stopped fitting; beside the text, the same width as before. */
+@media (max-width: 420px) {
+  .hero__actions { flex-direction: column; flex-wrap: nowrap; align-items: flex-start; gap: 16px; min-height: 98.1px; }
+}
+
+@media (min-width: 375px) and (max-width: 420px) {
+  html[lang^="en"] .hero__actions { flex-direction: row; align-items: center; gap: 12px; min-height: 54px; }
+}
+
+@media (min-width: 421px) and (max-width: 448px) {
+  html[lang^="fr"] .hero__actions { flex-direction: column; flex-wrap: nowrap; align-items: flex-start; gap: 16px; min-height: 98.1px; }
+}
+
+@media (min-width: 421px) and (max-width: 434px) {
+  html[lang^="de"] .hero__actions { flex-direction: column; flex-wrap: nowrap; align-items: flex-start; gap: 16px; min-height: 98.1px; }
+}
+
+@media (min-width: 750px) {
+  .hero__actions { justify-content: flex-end; min-width: 381px; }
+  html[lang^="en"] .hero__actions { min-width: 334.1px; }
+  html[lang^="fr"] .hero__actions { min-width: 408.3px; }
+  html[lang^="de"] .hero__actions { min-width: 394.5px; }
+}
+
+/* Capsule buttons. The ::before keeps a 46px touch target around the 38px capsule. */
+.hero__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: .625rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), border-color .35s var(--ease-out);
+}
+
+.hero__cta::before {
+  content: "";
+  position: absolute;
+  inset: -4px 0;
+}
+
+.hero__cta--solid { background: #efece4; color: var(--color-ink); }
+.hero__cta--ghost { background: transparent; border-color: rgba(245, 244, 240, .5); color: var(--color-ivory); }
+
+@media (hover: hover) {
+  .hero__cta:hover { transform: translateY(-2px); }
+  .hero__cta--solid:hover { border-color: #d0b984; box-shadow: 0 0 14px -4px rgba(225, 208, 173, .55); }
+  .hero__cta--ghost:hover { border-color: #e1d0ad; box-shadow: 0 0 14px -4px rgba(225, 208, 173, .45); }
+}
+
+.hero__cta:active {
+  opacity: 1;
+  transform: scale(.97);
+  transition-duration: .1s;
+}
+
+.hero__cta:focus-visible { outline: 2px solid var(--color-champagne); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__cta:hover,
+  .hero__cta:active { transform: none; }
 }
 
 .hero__index {
@@ -167,6 +295,11 @@
 }
 
 .hero__index a:hover { color: var(--fg); }
+
+@media (hover: hover) {
+  .hero__index a { transition: color .4s var(--ease-out), transform .4s var(--ease-out); }
+  .hero__index a:hover { transform: translateX(3px); }
+}
 .hero__index span { color: var(--color-champagne); }
 
 @media (min-width: 750px) {

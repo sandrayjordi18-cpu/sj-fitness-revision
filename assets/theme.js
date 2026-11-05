@@ -6,6 +6,9 @@
    ========================================================================== */
 
 (() => {
+  // iOS Safari only applies :active when a touch listener exists.
+  document.addEventListener('touchstart', () => {}, { passive: true });
+
   const root = document.documentElement;
   const header = document.querySelector('[data-header]');
   const drawer = document.querySelector('[data-drawer]');

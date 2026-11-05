@@ -97,6 +97,24 @@ summary::-webkit-details-marker { display: none; }
 
 ::selection { background: var(--color-champagne); color: var(--color-ink); }
 
+/* ---------- Interaction: mouse gets hover, touch gets :active ---------- */
+a, button, summary { -webkit-tap-highlight-color: transparent; }
+
+@media (hover: none) {
+  a:active,
+  button:active,
+  summary:active { opacity: .62; }
+}
+
+@media (hover: hover) {
+  .logo { transition: opacity .4s var(--ease-out); }
+  .logo:hover { opacity: .78; }
+  .menu-drawer a,
+  .menu-drawer__toggle { transition: color .35s var(--ease-out), opacity .35s var(--ease-out); }
+  .menu-drawer a:hover { color: var(--color-champagne); }
+  .menu-drawer__toggle:hover { opacity: .72; }
+}
+
 /* ---------- Layout ---------- */
 .page-width {
   width: 100%;
