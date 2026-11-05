@@ -138,7 +138,7 @@
         <button class="pack-picker__item" type="button" data-design="${esc(d.ref)}">
           <img src="${esc(d.img)}" alt="" loading="lazy">
           <span class="pack-picker__ref">${esc(d.title)}</span>
-          <span class="product-card__colour"><span class="product-card__swatch" style="--swatch: ${esc(d.swatch)}" aria-hidden="true"></span>${esc(d.colour)}</span>
+          ${d.colour ? `<span class="product-card__colour"><span class="product-card__swatch" style="--swatch: ${esc(d.swatch)}" aria-hidden="true"></span>${esc(d.colour)}</span>` : ''}
         </button></li>`).join('');
     };
 
@@ -152,10 +152,10 @@
     };
 
     const choose = (slot, d) => {
-      slot.querySelector('[data-slot-record]').value = `${d.ref} · ${d.colour} · ${d.title}`;
+      slot.querySelector('[data-slot-record]').value = [...new Set([d.ref, d.colour, d.title])].filter(Boolean).join(' · ');
       slot.querySelector('[data-slot-thumb]').style.backgroundImage = `url("${d.img}")`;
       slot.querySelector('[data-slot-title]').textContent = d.title;
-      slot.querySelector('[data-slot-colour]').innerHTML = `<span class="product-card__swatch" style="--swatch: ${esc(d.swatch)}" aria-hidden="true"></span>${esc(d.colour)}`;
+      slot.querySelector('[data-slot-colour]').innerHTML = d.colour ? `<span class="product-card__swatch" style="--swatch: ${esc(d.swatch)}" aria-hidden="true"></span>${esc(d.colour)}` : '';
       slot.querySelector('[data-slot-action]').textContent = 'Change';
       const preview = document.querySelector(`[data-slot-preview="${slot.dataset.packSlot}"] .media`);
       if (preview) {

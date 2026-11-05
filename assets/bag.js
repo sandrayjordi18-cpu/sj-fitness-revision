@@ -44,7 +44,7 @@
     list.innerHTML = items.map((item) => {
       const line = item.price * item.qty;
       total += line;
-      const meta = [`<div>${esc(item.variant)}</div>`]
+      const meta = (item.variant ? [`<div>${esc(item.variant)}</div>`] : [])
         .concat(Object.entries(item.properties || {}).map(([k, v]) => `<div><dt>${esc(k)}:</dt> <dd>${esc(v)}</dd></div>`))
         .join('');
       const lead = TEN_DAY.includes(item.category)
