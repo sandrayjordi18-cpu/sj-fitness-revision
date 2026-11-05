@@ -108,6 +108,14 @@
   };
 
   const waists = [...form.querySelectorAll('[data-waist]')].map(initWaist);
+
+  /* ---------- Rise: in centimetres, saved on the order line like the waist ---------- */
+  const rises = [...form.querySelectorAll('[data-rise]')].map((box) => {
+    const input = box.querySelector('[data-rise-input]');
+    const record = box.querySelector('[data-rise-record]');
+    input.addEventListener('input', () => { record.value = parseFloat(input.value) > 0 ? `${input.value} cm` : ''; });
+    return record;
+  });
   let waistRecord = () => {
     const w = waists[0];
     return w && w.record('value').value ? ` Waist: ${w.record('value').value} (≈ ${w.record('equivalent').value}).` : '';
@@ -148,7 +156,7 @@
       if (status && !status.querySelector('a')) {
         status.textContent = chosen < slots.length ? `Choose all ${slots.length} posings to continue.` : '';
       }
-      slots.forEach((s, i) => { if (i > 0) s.querySelector('[data-slot-waist]').hidden = same.checked; });
+      slots.forEach((s, i) => { if (i > 0) s.querySelectorAll('[data-slot-waist]').forEach((f) => { f.hidden = same.checked; }); });
     };
 
     const choose = (slot, d) => {
@@ -188,6 +196,7 @@
       if (!same.checked) return;
       const first = waists[0].values();
       waists.slice(1).forEach((w) => ['value', 'unit', 'equivalent'].forEach((k, i) => { w.record(k).value = first[i]; }));
+      rises.slice(1).forEach((r) => { r.value = rises[0].value; });
     }, true);
     refresh();
   }

@@ -13,22 +13,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
 
-  <link rel="stylesheet" href="assets/base.css?v=202611051804">
-  <link rel="stylesheet" href="assets/section-header.css?v=202611051804">
-  <link rel="stylesheet" href="assets/component-product-card.css?v=202611051804">
-  <link rel="stylesheet" href="assets/component-form.css?v=202611051804">
-  <link rel="stylesheet" href="assets/component-accordion.css?v=202611051804">
-  <link rel="stylesheet" href="assets/section-main-product.css?v=202611051804">
-  <link rel="stylesheet" href="assets/component-pack.css?v=202611051804">
-  <link rel="stylesheet" href="assets/section-measurement-guide.css?v=202611051804">
-  <link rel="stylesheet" href="assets/section-waist-guide.css?v=202611051804">
-  <link rel="stylesheet" href="assets/section-atelier-banner.css?v=202611051804">
-  <link rel="stylesheet" href="assets/section-footer.css?v=202611051804">
-  <script src="assets/theme.js?v=202611051804" defer></script>
-  <script src="assets/i18n-data.js?v=202611051804" defer></script>
-  <script src="assets/i18n.js?v=202611051804" defer></script>
-  <script src="assets/pack-data.js?v=202611051804" defer></script>
-  <script src="assets/product.js?v=202611051804" defer></script>
+  <link rel="stylesheet" href="assets/base.css?v=202611051819">
+  <link rel="stylesheet" href="assets/section-header.css?v=202611051819">
+  <link rel="stylesheet" href="assets/component-product-card.css?v=202611051819">
+  <link rel="stylesheet" href="assets/component-form.css?v=202611051819">
+  <link rel="stylesheet" href="assets/component-accordion.css?v=202611051819">
+  <link rel="stylesheet" href="assets/section-main-product.css?v=202611051819">
+  <link rel="stylesheet" href="assets/component-pack.css?v=202611051819">
+  <link rel="stylesheet" href="assets/section-measurement-guide.css?v=202611051819">
+  <link rel="stylesheet" href="assets/section-waist-guide.css?v=202611051819">
+  <link rel="stylesheet" href="assets/section-atelier-banner.css?v=202611051819">
+  <link rel="stylesheet" href="assets/section-footer.css?v=202611051819">
+  <script src="assets/theme.js?v=202611051819" defer></script>
+  <script src="assets/i18n-data.js?v=202611051819" defer></script>
+  <script src="assets/i18n.js?v=202611051819" defer></script>
+  <script src="assets/pack-data.js?v=202611051819" defer></script>
+  <script src="assets/product.js?v=202611051819" defer></script>
 </head>
 <body class="template-product">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -97,7 +97,7 @@
       </div>
 
       <a class="logo logo--image" href="index.html" data-home aria-label="S&amp;J Fitness — Home">
-        <img class="logo__image" src="assets/brand/logo-sj-fitness-marca-blanco.png?v=202611051804" alt="" width="70" height="42" decoding="async">
+        <img class="logo__image" src="assets/brand/logo-sj-fitness-marca-blanco.png?v=202611051819" alt="" width="70" height="42" decoding="async">
       </a>
 
       <div class="header__right">
@@ -196,6 +196,11 @@
                     <input type="hidden" name="properties[Posing 1 · Waist unit]" data-waist-record="unit">
                     <input type="hidden" name="properties[Posing 1 · Waist equivalent]" data-waist-record="equivalent">
                   </fieldset>
+                  <div class="option waist rise pack-slot__waist" data-rise data-slot-waist="1">
+                <label class="option__legend" for="rise-1">Rise <span class="option__hint">Posing 1 · cm</span></label>
+                <input class="field waist__field rise__field" type="number" inputmode="decimal" step="any" min="0" id="rise-1" aria-label="Rise in centimetres" data-rise-input>
+                <input type="hidden" name="properties[Posing 1 · Rise]" data-rise-record>
+              </div>
                 </li>
                 <li class="pack-slot" data-pack-slot="2">
                   <p class="pack-slot__label"><span>02</span>Posing 2</p>
@@ -222,10 +227,15 @@
                     <input type="hidden" name="properties[Posing 2 · Waist unit]" data-waist-record="unit">
                     <input type="hidden" name="properties[Posing 2 · Waist equivalent]" data-waist-record="equivalent">
                   </fieldset>
+                  <div class="option waist rise pack-slot__waist" data-rise data-slot-waist="2">
+                <label class="option__legend" for="rise-2">Rise <span class="option__hint">Posing 2 · cm</span></label>
+                <input class="field waist__field rise__field" type="number" inputmode="decimal" step="any" min="0" id="rise-2" aria-label="Rise in centimetres" data-rise-input>
+                <input type="hidden" name="properties[Posing 2 · Rise]" data-rise-record>
+              </div>
                 </li>
                 </ol>
-                <label class="check pack__same"><input type="checkbox" data-pack-same checked>Same waist for every posing</label>
-                <p class="option__help">Exact measurements, never sizes. The atelier reviews them by hand before cutting. <a class="inline-link" href="#waist-guide">How to measure your waist</a></p>
+                <label class="check pack__same"><input type="checkbox" data-pack-same checked>Same measurements for every posing</label>
+                <p class="option__help">Exact measurements, never sizes. The atelier reviews them by hand before cutting. <a class="inline-link" href="#waist-guide">How to measure your waist</a> · <a class="inline-link" href="#medir-tiro">How to measure the rise</a></p>
               </div>
 
               <div class="option">
@@ -304,7 +314,7 @@
         </div>
         <article class="mguide__block" data-reveal>
           <figure class="mguide__figure">
-            <img src="assets/medidas/medidas-contorno.jpg?v=202611051804" alt="Three fingers placed below the navel, with the tape measure level just under the third finger. Enlarged detail on the right." width="1024" height="588" loading="lazy">
+            <img src="assets/medidas/medidas-contorno.jpg?v=202611051819" alt="Three fingers placed below the navel, with the tape measure level just under the third finger. Enlarged detail on the right." width="1024" height="588" loading="lazy">
           </figure>
           <div class="mguide__body">
             <p class="eyebrow mguide__kicker">Waist measurement</p>
@@ -317,9 +327,9 @@
             </ol>
           </div>
         </article>
-        <article class="mguide__block" data-reveal>
+        <article class="mguide__block" id="medir-tiro" data-reveal>
           <figure class="mguide__figure">
-            <img src="assets/medidas/medidas-tiro.jpg?v=202611051804" alt="Path of the tape measure, seen from behind and from the side: from A, slightly above the tailbone, between the legs to B, just before the testicles." width="1024" height="478" loading="lazy">
+            <img src="assets/medidas/medidas-tiro.jpg?v=202611051819" alt="Path of the tape measure, seen from behind and from the side: from A, slightly above the tailbone, between the legs to B, just before the testicles." width="1024" height="478" loading="lazy">
             <figcaption class="mguide__legend">
               <p><span aria-hidden="true">A</span>Start: slightly above the tailbone</p>
               <p><span aria-hidden="true">B</span>End: just before the testicles</p>

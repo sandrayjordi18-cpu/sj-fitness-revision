@@ -17,7 +17,18 @@
 
 .mguide__block:last-child { padding-bottom: 0; }
 
+.mguide__block { scroll-margin-top: calc(var(--header-height, 88px) + 16px); }
+
 .mguide__figure { margin: 0; }
+
+/* Rise field of the product form. */
+.rise .rise__field {
+  display: block;
+  flex: none;
+  width: 100%;
+  max-width: 320px;
+  border: 1px solid var(--line-strong, var(--line));
+}
 
 .mguide__figure img {
   display: block;

@@ -36,6 +36,8 @@
     [/^Pack (\d) posings · (\d+) Bodybuilding posings$/, ['Pack $1 posings · $2 posings de Bodybuilding', 'Pack $1 posings · $2 posings de Bodybuilding', 'Pack $1 posings · $2 posings Bodybuilding', 'Paket $1 Posings · $2 Bodybuilding-Posings']],
     [/^(.+) each$/, ['$1 / unidad', '$1 / unidade', '$1 l’unité', '$1 pro Stück']],
     [/^(·\s)?Posing (\d)$/, ['$1Posing $2', '$1Posing $2', '$1Posing $2', '$1Posing $2']],
+    [/^Posing (\d) · Rise:$/, ['Posing $1 · Tiro:', 'Posing $1 · Gancho:', 'Posing $1 · Fourche :', 'Posing $1 · Schrittmaß:']],
+    [/^Posing (\d) · cm$/, ['Posing $1 · cm', 'Posing $1 · cm', 'Posing $1 · cm', 'Posing $1 · cm']],
     [/^Posing (\d) · Waist:$/, ['Posing $1 · Cintura:', 'Posing $1 · Cintura:', 'Posing $1 · Tour de taille :', 'Posing $1 · Taille:']],
     [/^Posing (\d) · Waist unit:$/, ['Posing $1 · Unidad:', 'Posing $1 · Unidade:', 'Posing $1 · Unité :', 'Posing $1 · Einheit:']],
     [/^Posing (\d) · Waist equivalent:$/, ['Posing $1 · Equivalencia:', 'Posing $1 · Equivalência:', 'Posing $1 · Équivalence :', 'Posing $1 · Umrechnung:']],
