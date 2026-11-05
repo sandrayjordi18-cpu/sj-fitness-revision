@@ -121,7 +121,12 @@
     const submit = form.querySelector('[data-pack-submit]');
     const same = pack.querySelector('[data-pack-same]');
     const grid = picker.querySelector('[data-picker-grid]');
-    const tabs = [...picker.querySelectorAll('[data-picker-cat]')];
+    // A category with no designs yet shows no tab.
+    const tabs = [...picker.querySelectorAll('[data-picker-cat]')].filter((t) => {
+      const has = window.SJ_PACK_DESIGNS.some((d) => d.cat === t.dataset.pickerCat);
+      if (!has) t.remove();
+      return has;
+    });
     const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     let activeSlot = null;
     let activeCat = 'Bodybuilding';
