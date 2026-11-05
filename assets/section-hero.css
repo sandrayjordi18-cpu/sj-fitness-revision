@@ -157,6 +157,28 @@
   .hero__triptych { bottom: calc(var(--hero-pad-bottom) + 21px + .6875rem * 1.65); }
 }
 
+/* Portrait tablets: full-height panels are too narrow for whole figures. The photos become
+   a band above the text, as on phones, with panels shaped like the two full-length photos
+   and short enough to end above the text. The text itself does not move. */
+@media (min-width: 750px) and (max-aspect-ratio: 4 / 5) {
+  .hero__triptych { bottom: auto; }
+  .hero__panel { height: min(calc(100vw / 3 * 1673 / 940), calc(100svh - 640px)); }
+
+  .hero__triptych::after {
+    inset: auto 0 0;
+    height: 14%;
+    background: linear-gradient(to bottom, rgba(16, 17, 19, 0), var(--color-ink));
+  }
+}
+
+/* From 990px the text block also has the category row and a larger heading. */
+@media (min-width: 990px) and (max-aspect-ratio: 4 / 5) {
+  .hero__panel { height: min(calc(100vw / 3 * 1673 / 940), calc(100svh - 88vw)); }
+
+  /* These panels can be wider than the third photo: fit it whole, feet included. */
+  .hero__photo { object-fit: contain; object-position: 50% 100%; }
+}
+
 .hero__content {
   position: relative;
   padding-top: calc(var(--header-height) + 160px);
