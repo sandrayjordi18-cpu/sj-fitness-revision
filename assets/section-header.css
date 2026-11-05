@@ -114,6 +114,13 @@
   .header__link { letter-spacing: .12em; }
 }
 
+/* Six menu entries: the narrowest desktop widths need a little less again to clear the logo. */
+@media (min-width: 1200px) and (max-width: 1279px) {
+  .header__menu,
+  .header__right { gap: 14px; }
+  .header__link { letter-spacing: .1em; }
+}
+
 /* ---------- Burger ---------- */
 .menu-drawer__toggle {
   display: flex;

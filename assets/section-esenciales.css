@@ -1,0 +1,178 @@
+/* ==========================================================================
+   S&J Essentials (Esenciales S&J) — coming soon. Animated hero, no products.
+   Shopify: sections/esenciales-hero.liquid
+
+   .es__stage keeps the photo's own 1672:941 proportions and carries the photo,
+   light, logo and ashes, so the logo stays in the light strip at any size.
+   ========================================================================== */
+
+.es {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-ivory);
+  --es-w: min(300vw, 1500px);
+  --es-h: min(112vw, 560px);
+}
+
+/* ---------- Visual ---------- */
+.es__visual { position: relative; height: var(--es-h); overflow: hidden; }
+
+.es__visual::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 38%;
+  background: linear-gradient(0deg, var(--color-ink) 3%, rgba(16, 17, 19, .82) 22%, rgba(16, 17, 19, .5) 48%, rgba(16, 17, 19, .18) 75%, rgba(16, 17, 19, 0) 100%);
+  pointer-events: none;
+}
+
+.es__stage {
+  position: absolute;
+  top: calc(var(--es-h) * .5 - var(--es-w) * .5628 * .48);
+  left: calc(50% - var(--es-w) * .735);
+  width: var(--es-w);
+  aspect-ratio: 1672 / 941;
+}
+
+.es__fabric {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: 73.5% 48%;
+  animation: es-fabric 12s ease-in-out infinite alternate;
+}
+
+.es__glow {
+  position: absolute;
+  top: 0;
+  left: 67.5%;
+  width: 14%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #fff2d433, transparent);
+  filter: blur(20px);
+  animation: es-light 7s ease-out both;
+}
+
+/* Multiply lets the logo's white paper disappear into the light. */
+.es__brand {
+  position: absolute;
+  top: 48%;
+  left: 73.5%;
+  width: 13%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: multiply;
+  animation: es-emerge 7s ease-out both;
+}
+
+.es__ashes { position: absolute; inset: 0; pointer-events: none; }
+
+.es__ash {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: var(--s);
+  height: var(--s);
+  background: #bfb4a0;
+  border-radius: 45%;
+  opacity: 0;
+  animation: es-ash var(--t) ease-out var(--d) both;
+}
+
+.es.is-offscreen .es__fabric,
+.es.is-offscreen .es__glow,
+.es.is-offscreen .es__brand,
+.es.is-offscreen .es__ash { animation-play-state: paused; }
+
+/* ---------- Copy ---------- */
+.es__copy { position: relative; z-index: 1; padding-block: 12px 64px; }
+
+.es__kicker { margin-bottom: 22px; color: var(--color-champagne); }
+
+.es__title {
+  font-size: clamp(2.375rem, 6vw, 4.25rem);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+}
+
+.es__text { max-width: 46ch; margin-top: 24px; color: #dfdbd3; }
+
+/* A state, not a button. */
+.es__status {
+  display: inline-block;
+  margin-top: 32px;
+  padding-block: 12px;
+  border-block: 1px solid #d0b984;
+  font-size: .6875rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #e1d0ad;
+}
+
+/* ---------- Tablet and desktop: copy over the dark fabric ---------- */
+@media (min-width: 760px) {
+  .es {
+    display: flex;
+    align-items: center;
+    min-height: max(560px, calc(100vw * 941 / 1672));
+  }
+
+  .es__visual { position: absolute; inset: 0; height: auto; container-type: size; }
+  .es__visual::after { content: none; }
+
+  .es__stage {
+    top: 50%;
+    right: 0;
+    left: auto;
+    width: max(100cqw, calc(100cqh * 1672 / 941));
+    transform: translateY(-50%);
+  }
+
+  .es__copy { padding-block: 80px; }
+  .es__title { max-width: 60%; }
+  .es__text { max-width: min(46ch, 46%); }
+}
+
+/* Very small phones: the second line of the heading stays on one line in every language. */
+@media (max-width: 399px) {
+  .es__title { font-size: clamp(1.875rem, 9.2vw, 2.375rem); }
+}
+
+@media (min-width: 760px) and (max-width: 899px) {
+  .es__title { font-size: 2.5rem; }
+}
+
+/* ---------- Motion ---------- */
+@keyframes es-fabric {
+  from { transform: scale(1.015) translateX(-.3%); }
+  to { transform: scale(1.045) translateX(.3%); }
+}
+
+@keyframes es-light {
+  0% { opacity: 0; }
+  45% { opacity: .3; }
+  100% { opacity: 1; }
+}
+
+@keyframes es-emerge {
+  0%, 12% { opacity: 0; filter: blur(15px); clip-path: inset(100% 0 0); }
+  45% { opacity: .45; filter: blur(5px); }
+  85%, 100% { opacity: 1; filter: blur(0); clip-path: inset(0); }
+}
+
+@keyframes es-ash {
+  0% { opacity: 0; transform: translate(0, 35px) scale(1.2); }
+  20% { opacity: .65; }
+  70% { opacity: .35; }
+  100% { opacity: 0; transform: translate(var(--drift), -160px) scale(.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .es__fabric,
+  .es__glow,
+  .es__brand { animation: none; }
+  .es__ashes { display: none; }
+}

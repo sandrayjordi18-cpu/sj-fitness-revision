@@ -113,7 +113,11 @@
     };
     let saved = new URLSearchParams(location.search).get('lang');
     try { saved = saved || localStorage.getItem('sj-lang'); } catch (e) { /* storage blocked */ }
-    if (saved) select(saved);
+    if (saved) {
+      select(saved);
+      // A link that arrives with ?lang= also keeps that language while browsing.
+      try { localStorage.setItem('sj-lang', saved); } catch (e) { /* storage blocked */ }
+    }
     options.forEach((o) => o.addEventListener('click', (e) => {
       e.preventDefault();
       const code = o.dataset.langOption;
