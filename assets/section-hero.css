@@ -342,3 +342,7 @@
   .statement__inner { grid-template-columns: 3fr 9fr; }
   .statement__label { padding-top: 1.1em; }
 }
+
+@media (min-width: 990px) {
+  .statement__inner--solo { grid-template-columns: 1fr; }
+}
