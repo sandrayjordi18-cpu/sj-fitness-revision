@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Cookie notice (prototype). Shows how the notice looks; in Shopify the notice
+   is Shopify's own (Settings › Customer privacy › Cookie banner) and the footer
+   button opens its preferences.
+   ========================================================================== */
+
+.cookie-notice {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  z-index: 60;
+  max-width: 520px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .35);
+  font-size: .875rem;
+  line-height: 1.6;
+}
+
+.cookie-notice[hidden],
+.cookie-prefs[hidden] { display: none; }
+
+.cookie-notice__title,
+.cookie-prefs__title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.cookie-notice p { margin: 0 0 16px; color: var(--muted); }
+
+.cookie-notice a,
+.cookie-prefs a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+
+/* Accept and reject carry the same weight. */
+.cookie-notice__actions,
+.cookie-prefs__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cookie-notice__actions .button,
+.cookie-prefs__actions .button { min-height: 46px; padding: 0 12px; }
+
+.cookie-notice__settings { grid-column: 1 / -1; }
+
+.cookie-prefs {
+  width: min(560px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  padding: 28px 24px;
+  border: 1px solid var(--line);
+  overflow-y: auto;
+  font-size: .875rem;
+}
+
+.cookie-prefs::backdrop { background: rgba(16, 17, 19, .6); }
+
+.cookie-prefs__list { margin: 20px 0 24px; padding: 0; list-style: none; }
+
+.cookie-prefs__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+
+.cookie-prefs__item label { font-weight: 500; }
+.cookie-prefs__item p { grid-column: 1; margin: 0; color: var(--muted); }
+.cookie-prefs__item input { grid-column: 2; grid-row: 1 / span 2; width: 20px; height: 20px; accent-color: var(--color-champagne); }
+.cookie-prefs__always { grid-column: 2; grid-row: 1; color: var(--muted); font-size: .75rem; }
+
+.footer__cookies {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.footer__cookies:hover { color: var(--fg); }
+
+@media (min-width: 750px) {
+  .cookie-notice { right: auto; bottom: 24px; left: 24px; padding: 28px; }
+  .cookie-notice__actions { grid-template-columns: 1fr 1fr 1fr; }
+  .cookie-notice__settings { grid-column: auto; }
+}
