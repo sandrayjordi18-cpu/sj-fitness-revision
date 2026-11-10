@@ -19,6 +19,8 @@
   const subtotal = document.querySelector('[data-bag-subtotal]');
   const tenDay = document.querySelector('[data-bag-ten-day]');
   const TEN_DAY = ['Bodybuilding', 'Classic Physique', 'Pack'];
+  // Same production time, but not a posing: no pack, no posing limit.
+  const LEAD_TEN = [...TEN_DAY, "Men's Physique"];
   const PACK_MAX = 3;
   const over = document.querySelector('[data-bag-over]');
   const hint = document.querySelector('[data-bag-hint]');
@@ -47,7 +49,7 @@
       const meta = (item.variant ? [`<div>${esc(item.variant)}</div>`] : [])
         .concat(Object.entries(item.properties || {}).map(([k, v]) => `<div><dt>${esc(k)}:</dt> <dd>${esc(v)}</dd></div>`))
         .join('');
-      const lead = TEN_DAY.includes(item.category)
+      const lead = LEAD_TEN.includes(item.category)
         ? 'Made in up to 10 working days once the atelier confirms your measurements and order details. Shipping time is added.'
         : 'Production time to be confirmed by the atelier.';
       return `<li class="cart-item" data-key="${esc(item.key)}">
@@ -75,7 +77,7 @@
       hint.innerHTML = `${posings} posings: the pack of ${posings} costs ${money(pack.price)}. <a class="inline-link" href="${pack.url}">Choose the pack</a>`;
     }
     over.hidden = !overLimit;
-    tenDay.hidden = !items.some((i) => TEN_DAY.includes(i.category));
+    tenDay.hidden = !items.some((i) => LEAD_TEN.includes(i.category));
   };
 
   list.addEventListener('change', (e) => {
